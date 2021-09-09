@@ -1,0 +1,61 @@
+# Style and formatting guidelines for the CertiKOS proof
+
+Generally speaking, try to follow the ambient conventions of the code
+you're modifying. In our context, the default should be to follow the
+Compcert style; when in doubt follow Proof General's lead.
+
+## Indentation and formatting
+
+  * Avoid spaces on empty lines, or at the end of a line. By always
+    keeping things in this "normal form" as a matter of course, we will
+    avoid gratuitous changes creeping into our commits, and causing
+    unnecessary conflicts during merges. This is a common practice, and
+    one more reason to read the `git diff` before you commit, which will
+    highlight those spaces bright red.
+
+  * As much as possible, keep your lines under 80 characters long.
+    This is the standard terminal width and is used ifor example by
+    Proof General to determine how to arrange its emacs windows.
+
+  * Indent by 2 columns; don't use tab characters; syntactically
+    equivalent things (say, the different arguments to a function)
+    should be aligned LISP-style if you break the line. That is,
+    either go for:
+
+        exists x, my_predicate arg1 arg2 arg3 /\ R x y
+
+    or (if the line is too long):
+
+        exists x, my_predicate arg1 arg2 arg3 /\
+                  R x y
+
+    or (even better, break the line on the outermost level and don't do
+    the LISP thing too much):
+
+        exists x,
+          my_function arg1 arg2 arg3 /\
+          R x y
+
+    or:
+
+        exists x,
+          my_function
+            arg1
+            arg2
+            arg3 /\
+          R x y
+
+    but preferably not something like:
+
+        exists x, my_function arg1 arg2
+                              arg3 /\ R x y
+
+    or the like.
+
+  * For most binary operators, use one space on each side, for example
+    `a + b`, `(f x) :: l'`, etc. For `.`, `,`, `;`, `:`, use no space
+    before and one space after (this is similar to typesetting English),
+    for example `forall (x: A), delta x = (x, x)`. This breaks
+    mathematical precedent somewhat in the case of `:`, but it's what
+    Compcert does and is pervasive in our existing code as well.
+

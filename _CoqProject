@@ -1,0 +1,11 @@
+-R Lectures Lectures
+-R Assignments Assignments
+Lectures/Coq_Lecture1_Basics.v
+Lectures/Coq_Lecture2_Induction_List.v
+Lectures/Coq_Lecture3_Tactics_Logic.v
+Lectures/Coq_Lecture4_Program.v
+Lectures/Coq_Lecture5_Hoare.v
+Assignments/Assignment2.v
+Assignments/Assignment3.v
+Assignments/Assignment4.v
+Assignments/Assignment5.v

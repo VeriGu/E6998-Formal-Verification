@@ -1,0 +1,13 @@
+#!/bin/bash
+
+subdirs='compcert compcertx coqrel liblayers mcertikos'
+
+make .filelist || exit 1
+mkdir -p html
+cd html
+includes=''
+for subdir in $subdirs
+do
+    includes="$includes -R ../$subdir $subdir"
+done
+coqdoc $includes --html --toc --utf8 --files-from ../.filelist

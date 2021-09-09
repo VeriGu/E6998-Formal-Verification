@@ -1,0 +1,62 @@
+This is the repository for the CertiKOS project.
+ 
+The directory structure planned so far looks like this:
+
+  * compcert:
+
+      The Compcert certified compiler, modified for our purposes. These
+      changes should be as minimal as possible, preferably be of general
+      applicability. For instance: make Compcert parametric in the memory
+      model (general) vs. instrument Compcert's memory states with abstract
+      data of some kind (specific to our layered verification strategy).
+
+      We keep the official INRIA version of Compcert in the branch
+      upstream/compcert, hence the changes can be listed with the following
+      command:
+
+        % git diff upstream/compcert -- compcert
+
+      In fact Tahina also keeps the changes that he hopes to submit upstream
+      separated from the more invasive changes we need, in the branch
+      private/tr263/compcert, hence changes are flowing in the following way:
+
+        upstream/compcert --> private/tr263/compcert --> master
+
+  * compcertx:
+
+      Tahina's CompcertX per-function compiler (eventually, per-module
+      compiler), built on top of our modified Compcert.
+
+  * liblayers:
+
+      Generic Coq library for layered verification. This include the abstract
+      framework for layers and modules. Most of it is only loosely coupled
+      with Compcert, however there are specific instantiations of the layer
+      logic which use the semantics of Clight and Asm, as defined in Compcert.
+      Using those, we can recast the correctness theorem of CompcertX in terms
+      of the abstract framework.
+
+      Note that up to this point, LSemantics appears nowhere. It is considered
+      a CertiKOS-specific language, instantiation is not done here. Instead,
+      it is considered as a CertiKOS-specific thing.
+
+  * [<foo>]certikos:
+
+      Some version of CertiKOS. The .c code and the corresponding .v proofs
+      should appear side by side.
+
+        NB: So far the plan is to use different directories for different
+        flavors of CertiKOS, but I'm not 100% convinced.  We want to avoid the
+        copy-and-paste-and-modify approach to code configuration as much as
+        possible, but if that's what we're going to do we should probably use
+        branches instead. On the other hand, if we just keep a set of
+        relatively clean changes between different flavors, then maybe we can
+        use make's $(VPATH) features to superimpose <only the modified files>
+        on top on some core version of CertiKOS. We should probably discuss
+        this in more depth at some point -- Jeremie 2014-05-23
+
+  * papers:
+
+      Articles and other typeset documents about CertiKOS and its
+      verification.
+

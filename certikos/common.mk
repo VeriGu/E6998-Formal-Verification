@@ -21,6 +21,9 @@ MAPPINGS= \
   coqrel \
   liblayers \
   tutorial \
+  # \
+  mcertikos \
+  mcertikos/mm \
 
 SUBDIRS= \
   $(shell for x in $(MAPPINGS); do echo $$x; done | sed 's:/.*::' | uniq)

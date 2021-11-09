@@ -18,7 +18,7 @@ Then, initialize `opam` with the specific version `4.03.0`:
   ```
 If your `opam` has a different version, switch to `4.03.0`:
   ```
-  opam switch --create 4.03.0
+  opam switch create 4.03.0
   ```
 Then, use `opam` to install `coq 8.6` and `menhir 20170101`
 ```
